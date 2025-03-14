@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background-color: #FFFFFF;
+
+    img {
+        max-width: 96px;
+    }
+}
+
+.candidate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+
+    h1 {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    p {
+        font-size: 14px;
+        font-weight: 400;
+    }
+}
+
+.candidate-name {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.avatar {
+    margin-left: 16px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #F5F5F5;
+
+    span {
+        font-size: 15px !important;
+        font-weight: bold !important;
+    }
+}
+
+@media (max-width: 430px) {
+    .candidate-name {
+        flex-direction: column;
+    }
+}

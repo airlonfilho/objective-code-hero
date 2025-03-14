@@ -1,1 +1,12 @@
-<p>home works!</p>
+<div class="container">
+    <div class="searchCharacters">
+        <h1>Busca de personagens</h1>
+
+        <div class="search-input">
+            <p>Nome do personagem</p>
+            <app-search (searchChange)="onSearch($event)"></app-search>
+        </div>
+
+        {{searchResult()}}
+    </div>
+</div>

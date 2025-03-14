@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, h1, p, span {
+    font-family: 'PT Sans Caption', sans-serif;
+}
+
+body {
+    background-color: #E5E5E5;
+}

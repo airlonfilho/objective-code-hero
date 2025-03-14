@@ -1,1 +1,6 @@
-<p>search works!</p>
+<div class="search-container">
+    <input type="text" class="search-input" placeholder="Search" [formControl]="searchControl" />
+    <img src="./../../../../assets/images/search.svg" alt="" class="search-icon">
+</div>
+
+<p>Resultado para: "{{ searchSignal() }}"</p>

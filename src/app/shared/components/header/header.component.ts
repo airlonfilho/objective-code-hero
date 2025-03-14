@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  candidateName: string = 'Airlon Filho';
+  logoImage: string = './../../../../assets/images/logo-objective.svg';
+
+  getInitials(name: string): string {
+    return name.split(' ')
+    .map(word => word.charAt(0).toUpperCase())
+    .join('');
+  }
 }
