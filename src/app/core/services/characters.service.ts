@@ -15,8 +15,13 @@ export class CharactersService {
   private baseUrl = environment.baseUrl;
 
   characters: WritableSignal<Character[]> = signal([]);
+  totalCharacters = signal<number>(0);
+  currentPage = signal<number>(1);
+  pageSize = 10;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.fetchCharacters();
+  }
 
   private getAuthParams(): string {
     const ts = new Date().getTime();
@@ -24,10 +29,21 @@ export class CharactersService {
     return `ts=${ts}&apikey=${this.publicKey}&hash=${hash}`;
   }
 
-  fetchCharacters(): void {
-    this.http.get<any>(`${this.baseUrl}/characters?${this.getAuthParams()}`)
-      .subscribe(response => {
+  fetchCharacters(page: number = 1, searchTerm: string = ''): void {
+    const apiPage = Math.max(page - 1, 0);
+    const offset = apiPage * this.pageSize;
+
+    let url = `${this.baseUrl}/characters?${this.getAuthParams()}&limit=${this.pageSize}&offset=${offset}`;
+
+    if (searchTerm.trim()) {
+      url += `&nameStartsWith=${encodeURIComponent(searchTerm)}`;
+    }
+
+    this.http.get<any>(url)
+      .subscribe((response) => {
         this.characters.set(response.data.results);
+        this.totalCharacters.set(response.data.total);
+        this.currentPage.set(page);
       });
   }
 }

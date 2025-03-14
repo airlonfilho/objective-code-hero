@@ -1,1 +1,35 @@
-<p>table works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>Personagem</th>
+            <th>Séries</th>
+            <th>Eventos</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if(characters){
+    @for(character of characters; track character){
+        <tr>
+            <td>
+                <div class="character">
+                    <img [src]="character.thumbnail.path + '.' + character.thumbnail.extension" alt="{{character.name}}">
+                    <span>{{character.name}}</span>
+                </div>
+            </td>
+            <td>
+                @for(serie of character.series.items; track serie){ 
+                    <p>{{ serie.name | titlecase | removeYears }}</p>
+                }
+            </td>
+            <td>
+                @for(event of character.events.items; track event){ 
+                    <p>{{event.name}}</p>
+                }
+            </td>
+        </tr>
+    }
+}
+
+
+    </tbody>
+</table>

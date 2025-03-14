@@ -1,1 +1,20 @@
-<p>pagination works!</p>
+<div class="pagination">
+  @if(currentPage !== 1){
+    <button (click)="goToPage(1)">««</button>
+    <button (click)="prevPage()">‹</button>
+  }
+  
+  <ng-container>
+    @for(page of visiblePages; track page) {
+      <button [class.active]="currentPage === page" (click)="goToPage(page)">
+        {{ page }}
+      </button>
+    }
+  </ng-container>
+
+  @if(currentPage !== totalPages){
+    <button (click)="nextPage()">›</button>
+    <button (click)="goToPage(totalPages)">»»</button>
+  }
+  
+</div>
